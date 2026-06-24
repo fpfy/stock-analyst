@@ -1,0 +1,6 @@
+
+# Databases and backups
+backups/
+database/
+*.db
+*.db.gz
