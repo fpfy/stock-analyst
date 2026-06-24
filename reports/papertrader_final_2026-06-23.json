@@ -1,0 +1,650 @@
+{
+  "summary": {
+    "initial_cash": 1000000,
+    "current_nav": 409194.0,
+    "total_return_pct": -59.08,
+    "win_rate_pct": 100.0,
+    "avg_win_pct": 41.48,
+    "avg_loss_pct": 0,
+    "max_drawdown_pct": 65.83,
+    "sharpe_ratio": -43.77,
+    "volatility_pct": 64.28,
+    "total_trades": 9,
+    "active_positions": 2
+  },
+  "daily_results": [
+    {
+      "date": "2026-06-10",
+      "nav": 1197574.0,
+      "cash": 905374.0,
+      "holdings_count": 1,
+      "actions": [
+        {
+          "date": "2026-06-10",
+          "action": "建仓",
+          "ts_code": "000651.SZ",
+          "price": 38.0,
+          "shares": 3900,
+          "amount": 148200.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        },
+        {
+          "date": "2026-06-10",
+          "action": "建仓",
+          "ts_code": "000568.SZ",
+          "price": 80.0,
+          "shares": 1800,
+          "amount": 144000.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        }
+      ],
+      "trade_count": 2
+    },
+    {
+      "date": "2026-06-11",
+      "nav": 1114570.0,
+      "cash": 822370.0,
+      "holdings_count": 2,
+      "actions": [
+        {
+          "date": "2026-06-11",
+          "action": "清仓",
+          "ts_code": "000568.SZ",
+          "price": 116.22,
+          "shares": 1800,
+          "amount": 209196.0,
+          "reason": "止盈",
+          "profit_pct": 45.275
+        },
+        {
+          "date": "2026-06-11",
+          "action": "建仓",
+          "ts_code": "000651.SZ",
+          "price": 38.0,
+          "shares": 3900,
+          "amount": 148200.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        },
+        {
+          "date": "2026-06-11",
+          "action": "建仓",
+          "ts_code": "000568.SZ",
+          "price": 80.0,
+          "shares": 1800,
+          "amount": 144000.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        }
+      ],
+      "trade_count": 3
+    },
+    {
+      "date": "2026-06-12",
+      "nav": 1031566.0,
+      "cash": 739366.0,
+      "holdings_count": 2,
+      "actions": [
+        {
+          "date": "2026-06-12",
+          "action": "清仓",
+          "ts_code": "000568.SZ",
+          "price": 116.22,
+          "shares": 1800,
+          "amount": 209196.0,
+          "reason": "止盈",
+          "profit_pct": 45.275
+        },
+        {
+          "date": "2026-06-12",
+          "action": "建仓",
+          "ts_code": "000651.SZ",
+          "price": 38.0,
+          "shares": 3900,
+          "amount": 148200.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        },
+        {
+          "date": "2026-06-12",
+          "action": "建仓",
+          "ts_code": "000568.SZ",
+          "price": 80.0,
+          "shares": 1800,
+          "amount": 144000.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        }
+      ],
+      "trade_count": 3
+    },
+    {
+      "date": "2026-06-15",
+      "nav": 948562.0,
+      "cash": 656362.0,
+      "holdings_count": 2,
+      "actions": [
+        {
+          "date": "2026-06-15",
+          "action": "清仓",
+          "ts_code": "000568.SZ",
+          "price": 116.22,
+          "shares": 1800,
+          "amount": 209196.0,
+          "reason": "止盈",
+          "profit_pct": 45.275
+        },
+        {
+          "date": "2026-06-15",
+          "action": "建仓",
+          "ts_code": "000651.SZ",
+          "price": 38.0,
+          "shares": 3900,
+          "amount": 148200.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        },
+        {
+          "date": "2026-06-15",
+          "action": "建仓",
+          "ts_code": "000568.SZ",
+          "price": 80.0,
+          "shares": 1800,
+          "amount": 144000.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        }
+      ],
+      "trade_count": 3
+    },
+    {
+      "date": "2026-06-16",
+      "nav": 865558.0,
+      "cash": 573358.0,
+      "holdings_count": 2,
+      "actions": [
+        {
+          "date": "2026-06-16",
+          "action": "清仓",
+          "ts_code": "000568.SZ",
+          "price": 116.22,
+          "shares": 1800,
+          "amount": 209196.0,
+          "reason": "止盈",
+          "profit_pct": 45.275
+        },
+        {
+          "date": "2026-06-16",
+          "action": "建仓",
+          "ts_code": "000651.SZ",
+          "price": 38.0,
+          "shares": 3900,
+          "amount": 148200.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        },
+        {
+          "date": "2026-06-16",
+          "action": "建仓",
+          "ts_code": "000568.SZ",
+          "price": 80.0,
+          "shares": 1800,
+          "amount": 144000.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        }
+      ],
+      "trade_count": 3
+    },
+    {
+      "date": "2026-06-17",
+      "nav": 782554.0,
+      "cash": 491640.0,
+      "holdings_count": 2,
+      "actions": [
+        {
+          "date": "2026-06-17",
+          "action": "清仓",
+          "ts_code": "000568.SZ",
+          "price": 116.22,
+          "shares": 1800,
+          "amount": 209196.0,
+          "reason": "止盈",
+          "profit_pct": 45.275
+        },
+        {
+          "date": "2026-06-17",
+          "action": "建仓",
+          "ts_code": "000651.SZ",
+          "price": 38.53,
+          "shares": 3800,
+          "amount": 146414.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        },
+        {
+          "date": "2026-06-17",
+          "action": "建仓",
+          "ts_code": "000568.SZ",
+          "price": 85.0,
+          "shares": 1700,
+          "amount": 144500.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        }
+      ],
+      "trade_count": 3
+    },
+    {
+      "date": "2026-06-18",
+      "nav": 689214.0,
+      "cash": 398300.0,
+      "holdings_count": 2,
+      "actions": [
+        {
+          "date": "2026-06-18",
+          "action": "清仓",
+          "ts_code": "000568.SZ",
+          "price": 116.22,
+          "shares": 1700,
+          "amount": 197574.0,
+          "reason": "止盈",
+          "profit_pct": 36.72941176470588
+        },
+        {
+          "date": "2026-06-18",
+          "action": "建仓",
+          "ts_code": "000651.SZ",
+          "price": 38.53,
+          "shares": 3800,
+          "amount": 146414.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        },
+        {
+          "date": "2026-06-18",
+          "action": "建仓",
+          "ts_code": "000568.SZ",
+          "price": 85.0,
+          "shares": 1700,
+          "amount": 144500.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        }
+      ],
+      "trade_count": 3
+    },
+    {
+      "date": "2026-06-19",
+      "nav": 595874.0,
+      "cash": 304960.0,
+      "holdings_count": 2,
+      "actions": [
+        {
+          "date": "2026-06-19",
+          "action": "清仓",
+          "ts_code": "000568.SZ",
+          "price": 116.22,
+          "shares": 1700,
+          "amount": 197574.0,
+          "reason": "止盈",
+          "profit_pct": 36.72941176470588
+        },
+        {
+          "date": "2026-06-19",
+          "action": "建仓",
+          "ts_code": "000651.SZ",
+          "price": 38.53,
+          "shares": 3800,
+          "amount": 146414.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        },
+        {
+          "date": "2026-06-19",
+          "action": "建仓",
+          "ts_code": "000568.SZ",
+          "price": 85.0,
+          "shares": 1700,
+          "amount": 144500.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        }
+      ],
+      "trade_count": 3
+    },
+    {
+      "date": "2026-06-22",
+      "nav": 502534.0,
+      "cash": 211620.0,
+      "holdings_count": 2,
+      "actions": [
+        {
+          "date": "2026-06-22",
+          "action": "清仓",
+          "ts_code": "000568.SZ",
+          "price": 116.22,
+          "shares": 1700,
+          "amount": 197574.0,
+          "reason": "止盈",
+          "profit_pct": 36.72941176470588
+        },
+        {
+          "date": "2026-06-22",
+          "action": "建仓",
+          "ts_code": "000651.SZ",
+          "price": 38.53,
+          "shares": 3800,
+          "amount": 146414.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        },
+        {
+          "date": "2026-06-22",
+          "action": "建仓",
+          "ts_code": "000568.SZ",
+          "price": 85.0,
+          "shares": 1700,
+          "amount": 144500.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        }
+      ],
+      "trade_count": 3
+    },
+    {
+      "date": "2026-06-23",
+      "nav": 409194.0,
+      "cash": 118280.0,
+      "holdings_count": 2,
+      "actions": [
+        {
+          "date": "2026-06-23",
+          "action": "清仓",
+          "ts_code": "000568.SZ",
+          "price": 116.22,
+          "shares": 1700,
+          "amount": 197574.0,
+          "reason": "止盈",
+          "profit_pct": 36.72941176470588
+        },
+        {
+          "date": "2026-06-23",
+          "action": "建仓",
+          "ts_code": "000651.SZ",
+          "price": 38.53,
+          "shares": 3800,
+          "amount": 146414.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        },
+        {
+          "date": "2026-06-23",
+          "action": "建仓",
+          "ts_code": "000568.SZ",
+          "price": 85.0,
+          "shares": 1700,
+          "amount": 144500.0,
+          "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+        }
+      ],
+      "trade_count": 3
+    }
+  ],
+  "trade_records": [
+    {
+      "date": "2026-06-10",
+      "action": "建仓",
+      "ts_code": "000651.SZ",
+      "price": 38.0,
+      "shares": 3900,
+      "amount": 148200.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-10",
+      "action": "建仓",
+      "ts_code": "000568.SZ",
+      "price": 80.0,
+      "shares": 1800,
+      "amount": 144000.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-11",
+      "action": "清仓",
+      "ts_code": "000568.SZ",
+      "price": 116.22,
+      "shares": 1800,
+      "amount": 209196.0,
+      "reason": "止盈",
+      "profit_pct": 45.275
+    },
+    {
+      "date": "2026-06-11",
+      "action": "建仓",
+      "ts_code": "000651.SZ",
+      "price": 38.0,
+      "shares": 3900,
+      "amount": 148200.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-11",
+      "action": "建仓",
+      "ts_code": "000568.SZ",
+      "price": 80.0,
+      "shares": 1800,
+      "amount": 144000.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-12",
+      "action": "清仓",
+      "ts_code": "000568.SZ",
+      "price": 116.22,
+      "shares": 1800,
+      "amount": 209196.0,
+      "reason": "止盈",
+      "profit_pct": 45.275
+    },
+    {
+      "date": "2026-06-12",
+      "action": "建仓",
+      "ts_code": "000651.SZ",
+      "price": 38.0,
+      "shares": 3900,
+      "amount": 148200.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-12",
+      "action": "建仓",
+      "ts_code": "000568.SZ",
+      "price": 80.0,
+      "shares": 1800,
+      "amount": 144000.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-15",
+      "action": "清仓",
+      "ts_code": "000568.SZ",
+      "price": 116.22,
+      "shares": 1800,
+      "amount": 209196.0,
+      "reason": "止盈",
+      "profit_pct": 45.275
+    },
+    {
+      "date": "2026-06-15",
+      "action": "建仓",
+      "ts_code": "000651.SZ",
+      "price": 38.0,
+      "shares": 3900,
+      "amount": 148200.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-15",
+      "action": "建仓",
+      "ts_code": "000568.SZ",
+      "price": 80.0,
+      "shares": 1800,
+      "amount": 144000.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-16",
+      "action": "清仓",
+      "ts_code": "000568.SZ",
+      "price": 116.22,
+      "shares": 1800,
+      "amount": 209196.0,
+      "reason": "止盈",
+      "profit_pct": 45.275
+    },
+    {
+      "date": "2026-06-16",
+      "action": "建仓",
+      "ts_code": "000651.SZ",
+      "price": 38.0,
+      "shares": 3900,
+      "amount": 148200.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-16",
+      "action": "建仓",
+      "ts_code": "000568.SZ",
+      "price": 80.0,
+      "shares": 1800,
+      "amount": 144000.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-17",
+      "action": "清仓",
+      "ts_code": "000568.SZ",
+      "price": 116.22,
+      "shares": 1800,
+      "amount": 209196.0,
+      "reason": "止盈",
+      "profit_pct": 45.275
+    },
+    {
+      "date": "2026-06-17",
+      "action": "建仓",
+      "ts_code": "000651.SZ",
+      "price": 38.53,
+      "shares": 3800,
+      "amount": 146414.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-17",
+      "action": "建仓",
+      "ts_code": "000568.SZ",
+      "price": 85.0,
+      "shares": 1700,
+      "amount": 144500.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-18",
+      "action": "清仓",
+      "ts_code": "000568.SZ",
+      "price": 116.22,
+      "shares": 1700,
+      "amount": 197574.0,
+      "reason": "止盈",
+      "profit_pct": 36.72941176470588
+    },
+    {
+      "date": "2026-06-18",
+      "action": "建仓",
+      "ts_code": "000651.SZ",
+      "price": 38.53,
+      "shares": 3800,
+      "amount": 146414.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-18",
+      "action": "建仓",
+      "ts_code": "000568.SZ",
+      "price": 85.0,
+      "shares": 1700,
+      "amount": 144500.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-19",
+      "action": "清仓",
+      "ts_code": "000568.SZ",
+      "price": 116.22,
+      "shares": 1700,
+      "amount": 197574.0,
+      "reason": "止盈",
+      "profit_pct": 36.72941176470588
+    },
+    {
+      "date": "2026-06-19",
+      "action": "建仓",
+      "ts_code": "000651.SZ",
+      "price": 38.53,
+      "shares": 3800,
+      "amount": 146414.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-19",
+      "action": "建仓",
+      "ts_code": "000568.SZ",
+      "price": 85.0,
+      "shares": 1700,
+      "amount": 144500.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-22",
+      "action": "清仓",
+      "ts_code": "000568.SZ",
+      "price": 116.22,
+      "shares": 1700,
+      "amount": 197574.0,
+      "reason": "止盈",
+      "profit_pct": 36.72941176470588
+    },
+    {
+      "date": "2026-06-22",
+      "action": "建仓",
+      "ts_code": "000651.SZ",
+      "price": 38.53,
+      "shares": 3800,
+      "amount": 146414.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-22",
+      "action": "建仓",
+      "ts_code": "000568.SZ",
+      "price": 85.0,
+      "shares": 1700,
+      "amount": 144500.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-23",
+      "action": "清仓",
+      "ts_code": "000568.SZ",
+      "price": 116.22,
+      "shares": 1700,
+      "amount": 197574.0,
+      "reason": "止盈",
+      "profit_pct": 36.72941176470588
+    },
+    {
+      "date": "2026-06-23",
+      "action": "建仓",
+      "ts_code": "000651.SZ",
+      "price": 38.53,
+      "shares": 3800,
+      "amount": 146414.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    },
+    {
+      "date": "2026-06-23",
+      "action": "建仓",
+      "ts_code": "000568.SZ",
+      "price": 85.0,
+      "shares": 1700,
+      "amount": 144500.0,
+      "reason": "自动建仓 | 建议优先级:HIGH | 风险等级:MEDIUM"
+    }
+  ],
+  "generated_at": "2026-06-23T18:25:26.299038"
+}

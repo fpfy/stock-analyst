@@ -1,0 +1,4 @@
+  File "<string>", line 7
+    new = 'def _calc_max_drawdown(self, ts_code, start_date, start_idx, end_idx, val_dates):\n        self.cursor.execute(n
+          ^
+SyntaxError: unterminated string literal (detected at line 7)
