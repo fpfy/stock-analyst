@@ -452,27 +452,25 @@ class AdvancedAnalyzer:
                     pe_val, pb_val, dv_ttm_val, close_val, total_mv_val
                 )
 
-                if not passed:
-                    failed_debt += 1
+                if total_score < 55:
                     continue
 
-                if total_score >= 55:
-                    eligible.append({
-                        'ts_code': ts_code,
-                        'name': name,
-                        'industry': industry,
-                        'score': total_score,
-                        'grade': grade,
-                        'dim_scores': dim_scores,
-                        'current_price': close or 0,
-                        'reasons': reasons[:5],
-                        'pe': pe,
-                        'pb': pb,
-                        'roe': roe,
-                        'dividend_yield': dv_ttm,
-                    })
+                eligible.append({
+                    'ts_code': ts_code,
+                    'name': name,
+                    'industry': industry,
+                    'score': total_score,
+                    'grade': grade,
+                    'dim_scores': dim_scores,
+                    'current_price': close or 0,
+                    'reasons': reasons[:5],
+                    'pe': pe,
+                    'pb': pb,
+                    'roe': roe,
+                    'dividend_yield': dv_ttm,
+                })
 
-            logger.info(f"行业排除: {excluded_by_industry}只, 负债否决: {failed_debt}只")
+            logger.info(f"行业排除: {excluded_by_industry}只, 六维不合格: {failed_debt}只")
             logger.info(f"六维20项合格(B以上): {len(eligible)}只")
 
             eligible.sort(key=lambda x: x['score'], reverse=True)

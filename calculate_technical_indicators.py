@@ -13,7 +13,9 @@ from technical_indicators import TechnicalIndicators
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
 
-ITICK_TOKEN = __import__('os').environ.get('ITICK_TOKEN', '') or 'e88f98fd87d842bcb0076ed3404ec82c5f50fcbbf6634766bd052fcd889f7b86'
+ITICK_TOKEN = __import__('os').environ.get('ITICK_TOKEN', '')
+if not ITICK_TOKEN:
+    raise EnvironmentError('ITICK_TOKEN 未设置，请配置环境变量或 .env')
 ITICK_KLINES_URL = 'https://api-free.itick.org/stock/klines'
 ITICK_INTERVAL = 12.0  # 免费限流 5次/分钟 => >=12s
 

@@ -288,9 +288,12 @@ class BacktestEngine:
             worst = min(stock_returns, key=lambda x: x['net_return'])
 
             # 基准收益（大盘）
-            bench_buy = self._get_price_at(cfg['benchmark'], buy_date)
-            bench_sell = self._get_price_at(cfg['benchmark'], sell_date)
-            bench_ret = (bench_sell - bench_buy) / bench_buy if bench_buy else 0
+            bench_ret, bench_code = self._get_benchmark_return(buy_date, sell_date)
+            if bench_ret is None:
+                bench_ret = 0
+                bench_label = 'N/A'
+            else:
+                bench_label = f"{bench_ret*100:+.2f}%"
 
             result = {
                 'period': period,
@@ -303,6 +306,7 @@ class BacktestEngine:
                 'worst': worst['ts_code'],
                 'worst_ret': worst['net_return'],
                 'benchmark_ret': bench_ret,
+                'benchmark_code': bench_code,
                 'stop_loss_count': sum(1 for s in stock_returns if s['stopped']),
                 'stocks': stock_returns
             }
@@ -312,7 +316,7 @@ class BacktestEngine:
             logger.info(f"  组合平均收益: {avg_ret*100:+.2f}% | 胜率: {win_rate:.1f}%")
             logger.info(f"  最佳: {best['ts_code']} ({best['net_return']*100:+.2f}%)")
             logger.info(f"  最差: {worst['ts_code']} ({worst['net_return']*100:+.2f}%)")
-            logger.info(f"  基准: {bench_ret*100:+.2f}% | 止损: {result['stop_loss_count']}次")
+            logger.info(f"  基准: {bench_label} | 止损: {result['stop_loss_count']}次")
 
         self.results = quarterly_results
         return quarterly_results
@@ -346,7 +350,7 @@ class BacktestEngine:
             logger.info(f"[Backtest] 使用外部选股权重 {period}: {len(eligible)}/{len(all_codes)} 只通过")
             return eligible
 
-        # 降级：使用内置简化策略
+        # 降级：使用内置简化策略（放宽 ROE 门槛，避免选股过度集中）
         self.cursor.execute("""
             SELECT f.ts_code
             FROM financial_data f
@@ -359,13 +363,38 @@ class BacktestEngine:
                 )
             ) v ON f.ts_code = v.ts_code
             WHERE f.end_date = ?
-              AND f.roe IS NOT NULL AND f.roe >= 10
+              AND f.roe IS NOT NULL AND f.roe >= 8
               AND f.revenue_yoy IS NOT NULL
               AND v.pe IS NOT NULL
             ORDER BY f.roe DESC
-            LIMIT 30
+            LIMIT 50
         """, (buy_date, period))
-        return [r[0] for r in self.cursor.fetchall()]
+        candidates = [r[0] for r in self.cursor.fetchall()]
+
+        # 若当期可用股票过少，保底回退到 ROE>=10 的最多 30 只
+        if len(candidates) < 10:
+            self.cursor.execute("""
+                SELECT f.ts_code
+                FROM financial_data f
+                INNER JOIN (
+                    SELECT ts_code, pe, pb, dv_ttm, trade_date
+                    FROM valuation_data v2
+                    WHERE trade_date = (
+                        SELECT MAX(trade_date) FROM valuation_data 
+                        WHERE ts_code = v2.ts_code AND trade_date <= ?
+                    )
+                ) v ON f.ts_code = v.ts_code
+                WHERE f.end_date = ?
+                  AND f.roe IS NOT NULL AND f.roe >= 10
+                  AND f.revenue_yoy IS NOT NULL
+                  AND v.pe IS NOT NULL
+                ORDER BY f.roe DESC
+                LIMIT 30
+            """, (buy_date, period))
+            candidates = [r[0] for r in self.cursor.fetchall()]
+
+        logger.info(f"[Backtest] 内置策略选股 {period}: {len(candidates)} 只")
+        return candidates
 
     def _get_price_series(self, ts_code, start_date, end_date):
         """获取持有期内价格序列 [(trade_date, close), ...]"""
@@ -562,6 +591,38 @@ class BacktestEngine:
             if dd > max_dd:
                 max_dd = dd
         return max_dd
+
+    def _get_index_price_at(self, index_code, trade_date):
+        """优先从 index_data 取指数价格，其次从 valuation_data 取"""
+        self.cursor.execute("""
+            SELECT close FROM index_data
+            WHERE index_code = ? AND date = ? AND close IS NOT NULL
+            LIMIT 1
+        """, (index_code, trade_date))
+        r = self.cursor.fetchone()
+        if r:
+            return float(r[0])
+        self.cursor.execute("""
+            SELECT close FROM valuation_data
+            WHERE ts_code = ? AND trade_date = ? AND close IS NOT NULL
+            LIMIT 1
+        """, (index_code, trade_date))
+        r = self.cursor.fetchone()
+        return float(r[0]) if r else None
+
+    def _get_benchmark_return(self, buy_date, sell_date):
+        """
+        获取基准指数收益。
+        优先使用 index_data；若匹配失败，改用 valuation_data 中可用的基准替代；
+        若仍无数据，返回 None。
+        """
+        benchmark_codes = ['000001.SH', '000300.SH', '399001.SZ']
+        for bm in benchmark_codes:
+            buy_price = self._get_index_price_at(bm, buy_date)
+            sell_price = self._get_index_price_at(bm, sell_date)
+            if buy_price and sell_price and buy_price > 0 and sell_price > 0:
+                return (sell_price - buy_price) / buy_price, bm
+        return None, None
 
     def generate_report(self):
         """输出回测报告"""

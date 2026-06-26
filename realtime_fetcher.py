@@ -262,7 +262,7 @@ class MultiDataFetcher:
         - 免费限流：5 次/分钟
         - 若传入 ts_codes，只查询指定股票；否则拉全市场会极慢，不推荐
         """
-        token = __import__('os').environ.get('ITICK_TOKEN', '') or 'e88f98fd87d842bcb0076ed3404ec82c5f50fcbbf6634766bd052fcd889f7b86'
+        token = __import__('os').environ.get('ITICK_TOKEN', '')
         if not token:
             logger.warning("ITICK_TOKEN 未设置，iTick stock_basic fallback 不可用")
             return pd.DataFrame()

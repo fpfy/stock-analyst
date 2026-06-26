@@ -21,6 +21,8 @@ MAX_POSITION = 0.15  # 单只股票最大仓位15%
 MIN_POSITION = 0.05  # 最小仓位5%
 BUY_COOLDOWN_DAYS = 5  # 清仓后冷却期，避免反复买卖
 
+logger = logging.getLogger(__name__)
+
 class TradeAction(Enum):
     BUY = "买入"
     SELL = "卖出"

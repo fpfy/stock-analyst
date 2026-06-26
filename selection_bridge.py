@@ -336,7 +336,7 @@ def persist_selection_results(growth_stocks: List[Dict], value_stocks: List[Dict
         for stock in growth_stocks:
             ts_code = stock.get('ts_code', '')
             name = stock.get('name', ts_code)
-            score = stock.get('growth_score', stock.get('score', 0))
+            score = stock.get('six_dim_score', stock.get('score', 0))
             current_price = stock.get('current_price', 0)
             cfg = RISK_CONFIG['成长']
 
@@ -346,14 +346,17 @@ def persist_selection_results(growth_stocks: List[Dict], value_stocks: List[Dict
             cursor.execute("""
                 INSERT OR REPLACE INTO trading_strategy
                     (report_date, ts_code, action, current_price, target_price,
-                     stop_loss_price, position_ratio, priority, reason, risk_grade)
-                VALUES (?, ?, 'BUY', ?, ?, ?, ?, ?, ?, ?)
+                     stop_loss_price, position_ratio, priority, reason, risk_grade,
+                     six_dim_score, fusion_score)
+                VALUES (?, ?, 'BUY', ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 report_date, ts_code, current_price, target_price,
                 stop_loss_price, cfg['max_position'],
                 'HIGH' if score >= 75 else 'MEDIUM' if score >= 55 else 'LOW',
                 f"成长通道 评分:{score:.0f} grade:{stock.get('growth_grade','')}",
-                cfg['risk_grade']
+                cfg['risk_grade'],
+                score,
+                stock.get('fusion_score', 0)
             ))
 
             # 同步到观察池
@@ -390,14 +393,17 @@ def persist_selection_results(growth_stocks: List[Dict], value_stocks: List[Dict
             cursor.execute("""
                 INSERT OR REPLACE INTO trading_strategy
                     (report_date, ts_code, action, current_price, target_price,
-                     stop_loss_price, position_ratio, priority, reason, risk_grade)
-                VALUES (?, ?, 'BUY', ?, ?, ?, ?, ?, ?, ?)
+                     stop_loss_price, position_ratio, priority, reason, risk_grade,
+                     six_dim_score, fusion_score)
+                VALUES (?, ?, 'BUY', ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 report_date, ts_code, current_price, target_price,
                 stop_loss_price, cfg['max_position'],
                 'HIGH' if score >= 75 else 'MEDIUM' if score >= 55 else 'LOW',
                 f"价值通道 总分:{score:.0f} grade:{stock.get('grade','')}",
-                cfg['risk_grade']
+                cfg['risk_grade'],
+                score,
+                stock.get('fusion_score', 0)
             ))
 
             # 同步到观察池
@@ -589,7 +595,8 @@ def get_latest_selection(limit: int = 50) -> List[Dict]:
         latest_date = row[0]
         cursor.execute("""
             SELECT ts_code, current_price, stop_loss_price, target_price,
-                   position_ratio, priority, risk_grade, reason
+                   position_ratio, priority, risk_grade, reason,
+                   six_dim_score, fusion_score
             FROM trading_strategy
             WHERE report_date = ? AND action = 'BUY'
             ORDER BY priority DESC, id ASC
@@ -620,6 +627,8 @@ def get_latest_selection(limit: int = 50) -> List[Dict]:
                 'priority': r[5] or 'MEDIUM',
                 'risk_grade': r[6] or 'MEDIUM',
                 'reason': r[7] or '',
+                'six_dim_score': r[8] or 0,
+                'fusion_score': r[9] or 0,
                 'report_date': latest_date
             })
 

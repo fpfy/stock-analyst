@@ -1,6 +1,34 @@
 
-# Databases and backups
-backups/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+logs/
+*.log
+
+# Data / artifacts
+data/
+data_raw/
+*.csv
+*.parquet
+
+# Reports / outputs
+reports/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.html
+
+# Databases / caches
 database/
 *.db
 *.db.gz
+
+# IDE / system
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

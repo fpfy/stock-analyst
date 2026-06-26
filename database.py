@@ -327,14 +327,14 @@ class DatabaseManager:
 
     def insert_data(self, table: str, data: Dict[str, Any]) -> int:
         """
-        插入数据到指定表
+        插入数据到指定表（INSERT OR IGNORE，避免重复键锁竞争）
 
         Args:
             table: 表名
             data: 数据字典
 
         Returns:
-            插入的记录ID
+            插入的记录ID，重复则返回0
         """
         conn = self._get_connection()
         cursor = conn.cursor()
@@ -344,21 +344,25 @@ class DatabaseManager:
         values = tuple(data.values())
 
         query = f"""
-            INSERT INTO {table} ({columns})
+            INSERT OR IGNORE INTO {table} ({columns})
             VALUES ({placeholders})
         """
 
         try:
             cursor.execute(query, values)
             conn.commit()
-            logger.debug(f"插入数据成功: {table}, ID={cursor.lastrowid}")
-            return cursor.lastrowid
-        except sqlite3.IntegrityError as e:
-            logger.warning(f"数据已存在，跳过插入: {e}")
-            return 0
+            if cursor.rowcount > 0:
+                logger.debug(f"插入数据成功: {table}, ID={cursor.lastrowid}")
+                return cursor.lastrowid
+            else:
+                logger.debug(f"数据已存在，跳过插入: {table}")
+                return 0
         except Exception as e:
             logger.error(f"插入数据失败: {e}")
-            conn.rollback()
+            try:
+                conn.rollback()
+            except Exception:
+                pass
             raise
 
     def update_data(self, table: str, data: Dict[str, Any], condition: str, params: tuple = ()) -> int:

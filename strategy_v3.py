@@ -109,9 +109,25 @@ class StrategyRouter:
         industry = self._get_industry(ts_code)
         is_growth_industry = self._is_growth_industry(industry)
 
-        # 三指标分流（框架原文）
-        growth_eligible = cagr and cagr >= 15 and is_growth_industry
-        value_eligible = pe_percentile is not None and pe_percentile < 30
+        # 三指标分流（放宽后）
+        growth_eligible = cagr and cagr >= 10 and is_growth_industry
+        value_eligible = pe_percentile is not None and pe_percentile < 40
+        # 价值股基本面门槛：PE<20 或 PB<2 或 股息率>2%
+        self.cursor.execute("""
+            SELECT pe, pb, dv_ttm FROM valuation_data
+            WHERE ts_code = ? AND trade_date = (
+                SELECT MAX(trade_date) FROM valuation_data WHERE ts_code = ?
+            )
+        """, (ts_code, ts_code))
+        vrow = self.cursor.fetchone()
+        pe_val, pb_val, dv_val = (vrow if vrow else (None, None, None))
+        value_fundamental = (
+            (pe_val is not None and pe_val < 20) or
+            (pb_val is not None and pb_val < 2) or
+            (dv_val is not None and dv_val > 2)
+        )
+        if value_fundamental:
+            value_eligible = True
 
         if growth_eligible and value_eligible:
             return ('both', 70)
@@ -179,12 +195,12 @@ class GrowthScorer:
     """成长股六维加权评分"""
 
     WEIGHTS = {
-        'revenue_growth': 0.25,   # ①营收增长 25%
-        'profit_quality': 0.20,   # ②盈利质量 20%
-        'market_space': 0.20,     # ③市场空间 20%
-        'competitive': 0.15,      # ④竞争优势 15%
-        'management': 0.15,       # ⑤管理层 15%
-        'valuation': 0.05,        # ⑥估值合理 5%
+        'revenue_growth': 0.20,   # ①营收增长 20%
+        'profit_quality': 0.25,   # ②盈利质量 25%
+        'market_space': 0.15,     # ③市场空间 15%
+        'competitive': 0.20,      # ④竞争优势 20%
+        'management': 0.10,       # ⑤管理层 10%
+        'valuation': 0.10,        # ⑥估值合理 10%
     }
 
     def __init__(self, cursor):
@@ -409,11 +425,11 @@ class ValueScorer:
 
         # 1. 有息负债率（用资产负债率近似）
         if debt_ratio:
-            if debt_ratio >= 60:
-                issues.append(f"资产负债率≥60%({debt_ratio:.1f}%) - 💀一票否决!")
+            if debt_ratio >= 70:
+                issues.append(f"资产负债率≥70%({debt_ratio:.1f}%) - 💀一票否决!")
                 return False, issues
-            elif debt_ratio >= 50:
-                issues.append(f"资产负债率≥50%({debt_ratio:.1f}%) - 预警")
+            elif debt_ratio >= 60:
+                issues.append(f"资产负债率≥60%({debt_ratio:.1f}%) - 预警")
 
         # 2. 流动比率/速动比率——从数据库已有字段推算
         # 用debt_ratio反向判断流动性风险
